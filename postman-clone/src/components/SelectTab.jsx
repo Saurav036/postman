@@ -28,6 +28,7 @@ const SelectTab = () => {
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
+        console.log(newValue, value)
     };
 
     return (

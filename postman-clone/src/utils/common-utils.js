@@ -33,3 +33,8 @@ export const getHeadersAndParams = (objArr) => {
     })
     return obj;
 }
+
+export const getAllRequests = ()=>{
+let data =  JSON.parse(localStorage.getItem('all-requests'))
+return data && data.length>0 ? data : []
+}

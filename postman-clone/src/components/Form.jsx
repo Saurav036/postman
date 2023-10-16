@@ -23,11 +23,12 @@ const useStyles = makeStyles({
     },
     textfield: {
         width: '100%',
-        background: '#F6F6F6'
+        background: '#F6F6F6',
+        marginLeft: [5, '!important']
     }
 })
 
-const Form = ({ onSendClick }) => {
+const Form = ({ onSendClick , isReqPresent, setApiResponse}) => {
     const classes = useStyles();
 
     const { formData, setFormData } = useContext(DataContext);
@@ -38,6 +39,8 @@ const Form = ({ onSendClick }) => {
 
     const handleChange = (e) => {
         setFormData({ ...formData, type: e.target.value });
+        localStorage.setItem('current-request', JSON.stringify(formData))
+        setApiResponse(null)
     }
 
     return (
@@ -50,13 +53,16 @@ const Form = ({ onSendClick }) => {
             >
                 <MenuItem value={'POST'}>POST</MenuItem>
                 <MenuItem value={'GET'}>GET</MenuItem>
+                <MenuItem value={'PUT'}>PUT</MenuItem>
+                <MenuItem value={'DELETE'}>DELETE</MenuItem>
             </Select>
             <TextField 
                 size="small" 
                 className={classes.textfield} 
                 onChange={(e) => onUrlChange(e)}
+                value={formData.url}
             />
-            <Button className={classes.button} variant="contained" onClick={() => onSendClick()}>Send</Button>
+            <Button className={classes.button} variant="contained" onClick={() => onSendClick()}>{isReqPresent?'Send':"Save"}</Button>
         </Box>
     )
 }

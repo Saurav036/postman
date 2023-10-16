@@ -32,6 +32,7 @@ const AddRow = ({ addRows, rowId, data, setData }) => {
             result = { ...result, id: rowId, check: true }
         } else {
             setCheckCheckbox(false);
+            addRows(oldArr => data)
             result = { ...result, id: rowId, check: false }
         }
         

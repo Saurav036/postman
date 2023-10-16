@@ -1,9 +1,13 @@
 
 import React, { useState, createContext } from 'react';
+import { getAllRequests } from '../utils/common-utils';
 
 export const DataContext = createContext(null);
 
 const DataProvider = ({ children }) => {
+
+
+    const [allRequests, setAllRequests] = useState(getAllRequests())
     
     const [formData, setFormData] = useState({ url: '', type: 'POST' })
     const [jsonText, setJsonText] = useState('');
@@ -20,7 +24,9 @@ const DataProvider = ({ children }) => {
                 paramData,
                 setParamData,
                 headerData,
-                setHeaderData
+                setHeaderData,
+                allRequests,
+                setAllRequests
             }}
         >
             {children}
